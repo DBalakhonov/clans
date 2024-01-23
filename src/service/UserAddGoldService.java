@@ -10,8 +10,16 @@ public class UserAddGoldService {
     }
 
     public void addGoldToClan(long userId, long clanId, int gold) {
-        Clan clan = clans.get(clanId);
-        clan.addGold("UserAddGold " + userId, gold);
+        if(gold>0) {
+            Clan clan = clans.get(clanId);
+            clan.addGold("UserAddGold " + userId, gold);
+        }
+    }
+    public void takeGoldUser(long userId, long clanId, int gold){
+        if(gold>0){
+            Clan clan = clans.get(clanId);
+            clan.takeGold("UserTakeGold " + userId, gold);
+        }
     }
 }
 

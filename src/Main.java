@@ -13,18 +13,19 @@ public class Main {
         System.out.println("Clan Gold: " + clan.getGold());
         Thread userThread1 = new Thread(() -> userAddGoldService.addGoldToClan(1, 1, 100));
         Thread userThread2 = new Thread(() -> userAddGoldService.addGoldToClan(2, 1, 50));
-
+        Thread userThread3 = new Thread(() -> userAddGoldService.takeGoldUser(3,1,50));
         Thread taskThread1 = new Thread(() -> taskService.completeTask(1, 1, 200));
-
         Thread taskThread2 = new Thread(() -> taskService.completeTask(1, 2, 150));
 
         userThread1.start();
         userThread2.start();
+        userThread3.start();
         taskThread1.start();
         taskThread2.start();
 
         userThread1.join();
         userThread2.join();
+        userThread3.join();
         taskThread1.join();
         taskThread2.join();
 

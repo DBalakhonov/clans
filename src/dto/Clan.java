@@ -29,6 +29,13 @@ public class Clan {
             currentChange.currentTime = LocalDateTime.now();
         }
     }
+    public void takeGold(String reason, int amount){
+        InfoChangeGold currentChange = goldChanges.computeIfAbsent(reason, k -> new InfoChangeGold());
+        synchronized (currentChange) {
+            currentChange.addGold -= amount;
+            currentChange.currentTime = LocalDateTime.now();
+        }
+    }
 
     public ConcurrentHashMap<String, InfoChangeGold> getGoldChanges() {
         return goldChanges;

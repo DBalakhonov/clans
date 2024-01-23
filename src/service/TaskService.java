@@ -10,7 +10,9 @@ public class TaskService {
     }
 
     public void completeTask(long clanId, long taskId, int gold) {
-        Clan clan = clans.get(clanId);
-        clan.addGold("CompleteTask " + taskId, gold);
+        if(gold>0) {
+            Clan clan = clans.get(clanId);
+            clan.addGold("CompleteTask " + taskId, gold);
+        }
     }
 }
